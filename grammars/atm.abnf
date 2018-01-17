@@ -1,0 +1,30 @@
+#ABNF 1.0;
+language pl-pl;
+mode voice;
+root $root;
+tag-format <semantics/1.0-literals>;
+
+$root = $action;
+
+$action = $out | $check;
+$request = Chciałbym | Chciałabym | Chcę | Proszę;
+
+$out = (([$request] wypłacić | wypłać) {out}) $ammount;
+$check = ([$request] sprawdzić stan konta | sprawdź stan konta) {check};
+
+$ammount = pięćdziesiąt {50} $currency [$tens] |
+           sto {100} $currency [$tens | $twenties | $fifties] |
+           dwieście {200} $currency [$tens | $twenties | $fifties | $hundreds];
+
+$currency = złotych {PLN} | dolarów {USD}| euro {EUR};
+
+$tens = w dziesiątkach {(10s)};
+$twenties = w dwudziestkach {(20s)};
+$fifties = w pięćdziesiątkach {(50s)};
+$hundreds = w setkach {(100s)};
+
+
+
+
+
+

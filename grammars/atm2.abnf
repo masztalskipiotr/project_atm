@@ -1,0 +1,20 @@
+#ABNF 1.0;
+language pl-pl;
+mode voice;
+root $root;
+tag-format <semantics/1.0-literals>;
+
+$root = $c $w $s $z $w1 $p;
+
+$c =chciałbym;
+$w = wypłacić;
+$s = pięćdziesiąt;
+$z = złotych;
+$w1 = w;
+$p = dziesiątkach;
+
+
+
+
+
+

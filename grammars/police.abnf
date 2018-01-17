@@ -1,0 +1,27 @@
+#ABNF 1.0;
+language pl-pl;
+mode voice;
+root $root;
+tag-format <semantics/1.0-literals>;
+
+$root = $kto $występek $gdzie;
+
+$ile_m1 = jeden {1};
+$ile_m2 = dwaj {2} | trzej {3} | czterej {4} ;
+$ile_m3 = dwóch {2} | trzech {3} | czterech {4} | pięciu {5} | sześciu {6} | (wielu | wiele) {n};
+$ile_ż1 = jedna {1};
+$ile_ż2 = dwie {2} | trzy {3} | cztery {4};
+$ile_ż3 = pięć {5} | sześć {6} | wiele {n};
+$ile_n = jedno {1} | dwa {2} | trzy {3} | cztery {4} | pięć {5} | sześć {6} | wiele {n};
+
+$kto = $kto_m | $kto_ż;
+$kto_m = [$ile_m1] (mężczyzna {m} | człowiek {dk}) | $ile_m2 (mężczyźni {m} | ludzie {dk}) | $ile_m3 mężczyzn {m};
+$kto_ż = [$ile_ż1] kobieta {k} | $ile_ż2 kobiety {k} | $ile_ż3 kobiet {k};
+
+$występek = pije alkohol {alko};
+
+$gdzie = ((na | przy) ulicy $ulica) | $parking;
+$ulica = Marszałkowskiej {Marszałkowska};
+
+
+
