@@ -14,6 +14,8 @@ def print_results(responses):
         print("Empty results - None object")
         return
 
+    counter = 0
+
     for response in responses:
         if response is None:
             print("Empty results - skipping response")
@@ -26,23 +28,31 @@ def print_results(responses):
 
         for n, res in enumerate(response.results):
             transcript = " ".join([word.transcript for word in res.words])
-            print("[{}.] {} /{}/ ({})".format(n, transcript, res.semantic_interpretation, res.confidence))
+            if not res.semantic_interpretation:
+                counter += 1
+            else:
+                print("[{}.] {} /{}/ ({})".format(n, transcript, res.semantic_interpretation, res.confidence))
+            if counter == n+1:
+                print("powtorz")
 
 
-if __name__ == '__main__':
-    ap = AddressProvider()
-    wave_file = "waves/example_atm.wav"
-    grammar_file = "grammars/atm.abnf"
-    address = ap.get("sarmata")
 
-    audio = load_wave(wave_file)
 
-    settings = SarmataSettings()
-    session_id = os.path.basename(wave_file)
-    settings.set_session_id(session_id)
-    settings.load_grammar(grammar_file)
 
-    recognizer = SarmataRecognizer(address)
-    results = recognizer.recognize(audio, settings)
 
-    print_results(results)
+def get_results(wave_file, grammar_file):
+        ap = AddressProvider()
+        address = ap.get("sarmata")
+        audio = load_wave(wave_file)
+        settings = SarmataSettings()
+        session_id = os.path.basename(wave_file)
+        settings.set_session_id(session_id)
+        settings.load_grammar(grammar_file)
+        recognizer = SarmataRecognizer(address)
+        results = recognizer.recognize(audio, settings)
+        return results
+
+
+# wave_file = "waves/example_atm.wav"
+# grammar_file = "grammars/atm.abnf"
+# print_results(get_results(wave_file,grammar_file))

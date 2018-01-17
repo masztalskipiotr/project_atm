@@ -9,7 +9,7 @@ if __name__ == '__main__':
     dc = DictationClient(address)
 
     # Read wave file
-    wave_filepath = "waves/example.wav"
+    wave_filepath = "waves/example_atm.wav"
     audio = get_audio(wave_filepath)
 
     # Run Pathfinder
